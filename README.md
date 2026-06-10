@@ -10,4 +10,4 @@ Personal GitHub Pages site for Pravin Kumar.
 
 ## Current Resume Focus
 
-The hosted resume is updated for Assistant Professor / Faculty applications in AI, ML, Cyber Security, Computer Vision, and related Computer Science / IT areas.
+The hosted resume is updated for Assistant Professor / Faculty applications in AI, ML, Computer Vision, and related Computer Science / IT areas.
