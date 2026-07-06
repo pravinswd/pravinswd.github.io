@@ -19,7 +19,7 @@ Light/dark theme toggle included (top-right of the navbar).
 ## Updating
 
 - **Content**: edit the relevant section in the HTML files directly.
-- **Profile photo**: replace `assets/img/profile.jpg` with your photo (roughly square, ≥ 400×400 px). It currently holds a "PK" initials placeholder.
+- **Profile photo**: replace `assets/img/profile.jpg` with a new photo (roughly square, ≥ 400×400 px) to change it. Currently the GitHub avatar photo.
 - **Resume**: replace `Pravin_kumar.pdf` (and `Resume_Pravin_Kumar.pdf`) with the new PDF, keeping the same filenames so links stay valid.
 
 The hosted resume is updated for Assistant Professor / Faculty applications in AI, ML, Computer Vision, and related Computer Science / IT areas.
