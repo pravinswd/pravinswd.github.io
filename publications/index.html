@@ -88,7 +88,11 @@
                     <div class="periodical">
                     </div>
                     <div class="links">
+                      <a class="abstract btn btn-sm z-depth-0" role="button">Abs</a>
                       <a class="bibtex btn btn-sm z-depth-0" role="button">Bib</a>
+                    </div>
+                    <div class="abstract hidden">
+                      <p>Cross-dataset diabetic retinopathy (DR) grading is often reported as a forced five-class prediction problem, even when the model evidence is uncertain or internally inconsistent. We study a safer triage setting in which a model may either assign a DR grade or defer the case for expert review. We introduce Lesion-Graph Ordinal Reasoning for DR (LGOR-DR), a compact post-hoc layer that links calibrated grade probabilities with Core-4 lesion signals (microaneurysms, hemorrhages, hard exudates, and soft exudates), lesion burden, and concept uncertainty. For each case, LGOR-DR returns a predicted grade, lesion evidence, calibrated confidence, and a deferral score driven by ordinal entropy, probability margin, concept uncertainty, and graph-grade conflict. We evaluate seven model-target settings across DeepDRiD, IDRiD, and DDR. Source-fitted temperature scaling improves target Brier score in every setting, while ECE changes are mixed. Calibrated LGOR deferral then improves retained-case quadratic weighted kappa at both 80% and 70% target-quantile coverage, with mean gains of +0.0352 and +0.0535. Under the stricter source-threshold protocol, where thresholds are selected only on source validation, retained-case QWK again improves in every setting, with mean gains of +0.0505 and +0.0826 at the 80% and 70% source thresholds. Deferred cases are enriched for errors by about 1.6&times;.</p>
                     </div>
                     <div class="bibtex hidden">
                       <figure class="highlight"><pre><code class="language-bibtex" data-lang="bibtex">@inproceedings{kumar2026lgor,
@@ -115,7 +119,11 @@
                     <div class="periodical">
                     </div>
                     <div class="links">
+                      <a class="abstract btn btn-sm z-depth-0" role="button">Abs</a>
                       <a class="bibtex btn btn-sm z-depth-0" role="button">Bib</a>
+                    </div>
+                    <div class="abstract hidden">
+                      <p>Diabetic retinopathy (DR) grading needs predictions that clinicians can inspect. Concept-bottleneck models (CBMs) support this by routing decisions through named lesion findings, but existing DR CBMs usually summarize each finding with a diffuse soft-attention map. Such maps can wash out small, localized signs such as microaneurysms. We introduce LCK-CBM, a Lesion-Concept-Keypoint CBM that places K=4 soft spatial peaks on each supervised lesion type (microaneurysms, haemorrhages, hard exudates, and soft exudates). It pools features at these peaks, gates them by the corresponding presence confidence, and feeds the resulting evidence to a CORAL ordinal grade head. Thus each image receives 16 clinically interpretable evidence locations rather than one attention map per lesion type. On the strict APTOS-2019&rarr;IDRiD transfer protocol LCK-CBM+self-KD improves QWK by +0.031 over a closely matched soft-attention CBM (3-seed mean 0.7483&plusmn;0.011 vs 0.7168). The study is framed as a controlled head-level ablation rather than a leaderboard comparison: all Stage-3 rows share the same image size, preprocessing, optimiser schedule, and APTOS-trained transfer protocol. We further show that distilling from a soft-attention teacher harms LCK-CBM (IDRiD &minus;0.08 QWK; a mechanistic mismatch between teacher and student pooling), whereas self-distillation from an LCK-CBM teacher recovers and improves the student (+0.08 recovery). For every prediction LCK-CBM emits typed lesion attention overlays and keypoint coordinates, giving a per-decision clinical audit trail at no inference-time cost.</p>
                     </div>
                     <div class="bibtex hidden">
                       <figure class="highlight"><pre><code class="language-bibtex" data-lang="bibtex">@inproceedings{kumar2026lckcbm,
@@ -142,8 +150,13 @@
                     <div class="periodical">
                     </div>
                     <div class="links">
+                      <a class="abstract btn btn-sm z-depth-0" role="button">Abs</a>
                       <a href="https://doi.org/10.1016/j.icte.2026.06.010" class="btn btn-sm z-depth-0" role="button" rel="external nofollow noopener" target="_blank">DOI</a>
                       <a class="bibtex btn btn-sm z-depth-0" role="button">Bib</a>
+                      <a href="https://www.sciencedirect.com/science/article/pii/S2405959526001098" class="btn btn-sm z-depth-0" role="button" rel="external nofollow noopener" target="_blank">HTML</a>
+                    </div>
+                    <div class="abstract hidden">
+                      <p>Automated diabetic retinopathy (DR) grading looks accurate until it meets images from another clinic or camera, where agreement slips. We narrow this gap by reading each eye as five views: four lesion crops located by a frozen EyePACS teacher's Grad-CAM, plus the whole image. A ConvNeXt-Small backbone and an attention module fuse them into one ordinal grade, while the teacher's CORAL thresholds are distilled with a loss focused on the decisive middle grades. Trained once and left untouched, our APTOS model reaches 0.92 kappa in domain and holds 0.81 to 0.89 across three unseen datasets, about 0.25 above prior work.</p>
                     </div>
                     <div class="bibtex hidden">
                       <figure class="highlight"><pre><code class="language-bibtex" data-lang="bibtex">@article{kumar2026lamvt,
@@ -173,7 +186,11 @@
                     <div class="periodical">
                     </div>
                     <div class="links">
+                      <a class="abstract btn btn-sm z-depth-0" role="button">Abs</a>
                       <a class="bibtex btn btn-sm z-depth-0" role="button">Bib</a>
+                    </div>
+                    <div class="abstract hidden">
+                      <p>Microaneurysms (MAs) are the earliest visible sign of diabetic retinopathy, so a screening model must be accurate on tiny lesions, transfer across imaging devices, and remain lightweight. We present MSDAG-Net, a compact (5.3M-parameter) dual-attention encoder-decoder that combines residual blocks, a squeeze-and-excitation (SE)-weighted atrous-pyramid bottleneck, spatial and channel skip gates, and deep supervision. We evaluate it under a deliberately strict protocol: image-wise data splits, the official IDRiD test set, retained MA-negative (background) patches, lesion-level metrics, and a genuine IDRiD&rarr;FGADR cross-dataset transfer. Trained identically over three seeds against six baselines, MSDAG-Net matches them on in-domain Dice yet delivers the best cross-dataset generalization (AUC-PR 0.58 versus &le;0.54) while using only a fraction of the parameters of the transformer and self-configuring models; as a three-seed ensemble with test-time augmentation it reaches 0.51 Dice, 0.98 in-domain AUC-PR, and 0.60 cross-dataset AUC-PR. Because we evaluate on the official test set rather than on randomly split patches, these scores are conservative and should not be compared directly with patch-level reports. The code and fixed splits are released to support reproducible comparison.</p>
                     </div>
                     <div class="bibtex hidden">
                       <figure class="highlight"><pre><code class="language-bibtex" data-lang="bibtex">@article{kumar2026peda,
