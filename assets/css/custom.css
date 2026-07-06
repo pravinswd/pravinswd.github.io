@@ -1,0 +1,52 @@
+/* ==========================================================================
+   Pravin Kumar — custom brand overrides layered on top of the al-folio theme.
+   Loaded after main.css so these variable/rule overrides win.
+   ========================================================================== */
+
+/* --- Cohesive teal brand accent (light + dark) --- */
+:root {
+  --global-theme-color: #0e7490;
+  --global-hover-color: #0b5f77;
+  --global-highlight-color: #0e7490;
+  --global-code-bg-color: rgba(14, 116, 144, 0.06);
+}
+
+html[data-theme="dark"] {
+  --global-theme-color: #38c5d8;
+  --global-hover-color: #63d6e6;
+  --global-highlight-color: #38c5d8;
+  --global-code-bg-color: #10333b;
+}
+
+/* --- Publication preview thumbnails --- */
+.publications ol.bibliography li .preview {
+  max-height: 8rem;
+  width: auto;
+  max-width: 100%;
+  border: 1px solid var(--global-divider-color);
+  background: #fff;
+}
+
+/* Give the badge a little breathing room above the thumbnail */
+.publications ol.bibliography li .col.abbr,
+.publications ol.bibliography li .col-sm-2.abbr {
+  text-align: center;
+}
+.publications ol.bibliography li .col.abbr figure,
+.publications ol.bibliography li .col-sm-2.abbr figure {
+  margin: 0.5rem 0 0;
+}
+
+/* --- Subtle polish --- */
+.profile img.img-fluid {
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.12);
+}
+
+.post .post-title span.font-weight-bold {
+  color: var(--global-theme-color);
+}
+
+/* Slightly stronger link affordance on the nav brand */
+.navbar-brand.title:hover {
+  color: var(--global-theme-color) !important;
+}
