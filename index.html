@@ -1,15 +1,433 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Pravin Kumar</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" /> -->
-    <!-- <script src="main.js"></script> -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pravin Kumar</title>
+  <meta name="description" content="Pravin Kumar — Assistant Professor and Ph.D. scholar in medical image analysis, deep learning, and computer vision.">
+  <style>
+    :root {
+      --theme: #b509ac;
+      --bg: #ffffff;
+      --text: #212529;
+      --muted: #6c757d;
+      --border: #e9ecef;
+      --card: #f8f9fa;
+      --code: #f3f4f6;
+    }
+    html[data-theme="dark"] {
+      --theme: #2698ba;
+      --bg: #1c1c1d;
+      --text: #e8e8e8;
+      --muted: #9a9a9a;
+      --border: #333;
+      --card: #26262a;
+      --code: #2b2b30;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 70px; }
+    body {
+      font-family: "Roboto", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+      transition: background 0.2s, color 0.2s;
+    }
+    a { color: var(--theme); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ---------- Navbar ---------- */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      padding: 0.7rem 1rem;
+    }
+    .nav-inner {
+      max-width: 900px; margin: 0 auto;
+      display: flex; align-items: center; flex-wrap: wrap; gap: 0.4rem 1.2rem;
+    }
+    .brand { font-size: 1.15rem; color: var(--text); }
+    .brand b { font-weight: 700; }
+    .nav-links { margin-left: auto; display: flex; flex-wrap: wrap; gap: 1.1rem; align-items: center; }
+    .nav-links a { color: var(--text); font-size: 0.95rem; }
+    .nav-links a:hover { color: var(--theme); text-decoration: none; }
+    #theme-toggle {
+      background: none; border: none; cursor: pointer;
+      font-size: 1.05rem; color: var(--text); padding: 0 0.2rem;
+    }
+    #theme-toggle:hover { color: var(--theme); }
+
+    /* ---------- Layout ---------- */
+    main { max-width: 900px; margin: 0 auto; padding: 2.5rem 1.25rem 3rem; }
+    section { margin-bottom: 3rem; }
+    h1 { font-weight: 300; font-size: 2.6rem; line-height: 1.15; }
+    h1 .last { color: var(--theme); font-weight: 400; }
+    .tagline { color: var(--muted); margin-top: 0.4rem; font-size: 1.05rem; }
+    h2 {
+      font-weight: 500; font-size: 1.5rem; margin-bottom: 1rem;
+    }
+    h2 a { color: var(--text); }
+    h2 a:hover { color: var(--theme); text-decoration: none; }
+
+    /* ---------- Profile ---------- */
+    .profile-row { display: flex; gap: 2rem; align-items: flex-start; flex-wrap: wrap; margin-top: 1.8rem; }
+    .profile-text { flex: 1 1 420px; }
+    .profile-img { flex: 0 0 auto; text-align: center; }
+    .profile-img img, .profile-img .initials {
+      width: 180px; height: 180px; border-radius: 12px; object-fit: cover;
+    }
+    .profile-img .initials {
+      display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, var(--theme), #6f42c1);
+      color: #fff; font-size: 3.4rem; font-weight: 500;
+    }
+    .profile-img .addr { font-size: 0.8rem; color: var(--muted); margin-top: 0.55rem; line-height: 1.45; }
+    .profile-text p + p { margin-top: 0.9rem; }
+
+    /* ---------- News ---------- */
+    .news-item { display: flex; gap: 1.2rem; padding: 0.45rem 0; }
+    .news-date { flex: 0 0 6.5rem; font-weight: 700; font-size: 0.9rem; }
+    .news-body { flex: 1; font-size: 0.95rem; }
+
+    /* ---------- Publications ---------- */
+    .pub { display: flex; gap: 1.2rem; padding: 0.9rem 0; border-bottom: 1px solid var(--border); }
+    .pub:last-child { border-bottom: none; }
+    .pub-year { flex: 0 0 4rem; color: var(--muted); font-weight: 700; }
+    .pub-body { flex: 1; }
+    .pub-title { font-weight: 500; }
+    .pub-authors { font-size: 0.93rem; margin-top: 0.15rem; }
+    .pub-authors b { font-weight: 700; }
+    .pub-venue { font-size: 0.9rem; font-style: italic; color: var(--muted); margin-top: 0.15rem; }
+    .badge {
+      display: inline-block; font-size: 0.72rem; font-style: normal; font-weight: 600;
+      border: 1px solid var(--theme); color: var(--theme);
+      border-radius: 4px; padding: 0.05rem 0.45rem; margin-top: 0.4rem;
+      text-transform: uppercase; letter-spacing: 0.04em;
+    }
+
+    /* ---------- Cards / entries ---------- */
+    .entry { display: flex; gap: 1.2rem; padding: 0.8rem 0; }
+    .entry-when { flex: 0 0 10.5rem; color: var(--muted); font-size: 0.9rem; }
+    .entry-body { flex: 1; }
+    .entry-body .where { color: var(--muted); font-size: 0.92rem; }
+    .entry-body ul { margin: 0.4rem 0 0 1.1rem; font-size: 0.94rem; }
+    .entry-body ul li + li { margin-top: 0.25rem; }
+
+    /* ---------- Skills ---------- */
+    .skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0.8rem; }
+    .skill-card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 0.9rem 1rem; }
+    .skill-card h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.3rem; }
+    .skill-card p { font-size: 0.9rem; color: var(--muted); }
+
+    /* ---------- Footer ---------- */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 1.6rem 1.25rem 2.2rem; text-align: center;
+      font-size: 0.88rem; color: var(--muted);
+    }
+    .social { display: flex; justify-content: center; gap: 1.4rem; margin-bottom: 0.9rem; }
+    .social a { color: var(--text); }
+    .social a:hover { color: var(--theme); }
+    .social svg { width: 22px; height: 22px; fill: currentColor; vertical-align: middle; }
+
+    .btn {
+      display: inline-block; border: 1px solid var(--theme); color: var(--theme);
+      border-radius: 6px; padding: 0.3rem 0.9rem; font-size: 0.9rem; margin-top: 1rem;
+    }
+    .btn:hover { background: var(--theme); color: #fff; text-decoration: none; }
+
+    @media (max-width: 640px) {
+      h1 { font-size: 2rem; }
+      .profile-row { flex-direction: column-reverse; }
+      .entry, .pub, .news-item { flex-direction: column; gap: 0.15rem; }
+      .entry-when, .pub-year, .news-date { flex: none; }
+    }
+  </style>
 </head>
 <body>
-    <h1>Pravin Kumar</h1><br>
-    <a href="Pravin_kumar.pdf">Get my resume!</a>
+  <nav>
+    <div class="nav-inner">
+      <span class="brand">Pravin <b>Kumar</b></span>
+      <div class="nav-links">
+        <a href="#about">about</a>
+        <a href="#news">news</a>
+        <a href="#publications">publications</a>
+        <a href="#teaching">teaching</a>
+        <a href="#experience">experience</a>
+        <a href="Pravin_kumar.pdf">cv</a>
+        <button id="theme-toggle" title="Toggle dark mode" aria-label="Toggle dark mode">&#9788;</button>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <!-- ================= About ================= -->
+    <section id="about">
+      <h1>Pravin <span class="last">Kumar</span></h1>
+      <p class="tagline">Assistant Professor &middot; Ph.D. Scholar, CVBL, IIIT Allahabad</p>
+
+      <div class="profile-row">
+        <div class="profile-text">
+          <p>
+            I am an Assistant Professor at <b>Sri Balaji University, Pune</b> and a Ph.D. scholar at the
+            <b>Computer Vision and Biometrics Lab (CVBL), IIIT Allahabad</b>, working on medical image
+            analysis, deep learning, and computer vision.
+          </p>
+          <p>
+            My research focuses on <b>diabetic retinopathy screening</b> — lesion segmentation, fundus image
+            analysis, cross-dataset grading, interpretable AI, transformers, and reliable AI for healthcare.
+            I also teach algorithms, data structures, Python programming, pattern recognition, and deep learning.
+          </p>
+          <p>
+            Previously, I worked as a Data Scientist building computer-vision solutions for face recognition and
+            PPE-compliance monitoring, and I run the digital education channel
+            <a href="https://www.youtube.com/@CSwithPravin" target="_blank" rel="noopener">CSwithPravin</a>.
+          </p>
+          <a class="btn" href="Pravin_kumar.pdf">Download CV</a>
+        </div>
+        <div class="profile-img">
+          <img src="assets/img/profile.jpg" alt="Pravin Kumar"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="initials" style="display:none;">PK</div>
+          <div class="addr">
+            Sri Balaji University, Pune<br>
+            IIIT Allahabad, U.P., India<br>
+            <a href="mailto:praveen.swd@gmail.com">praveen.swd@gmail.com</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= News ================= -->
+    <section id="news">
+      <h2><a href="#news">news</a></h2>
+      <div class="news-item">
+        <span class="news-date">2026</span>
+        <span class="news-body">Two manuscripts on cross-dataset diabetic retinopathy grading and reasoning submitted to <i>CVIP 2026</i>.</span>
+      </div>
+      <div class="news-item">
+        <span class="news-date">2026</span>
+        <span class="news-body">Manuscripts on lesion-anchored DR grading and microaneurysm segmentation submitted to <i>ICT Express</i>.</span>
+      </div>
+      <div class="news-item">
+        <span class="news-date">2025</span>
+        <span class="news-body">Leading the <b>Techno Tuner Club</b> (2025–2026) at Sri Balaji University, mentoring student technical initiatives.</span>
+      </div>
+      <div class="news-item">
+        <span class="news-date">2025</span>
+        <span class="news-body">Serving as <b>University SPOC for Smart India Hackathon (SIH)</b>, coordinating with the Ministry of Education.</span>
+      </div>
+      <div class="news-item">
+        <span class="news-date">Nov 2024</span>
+        <span class="news-body">Joined <b>Sri Balaji University, Pune</b> as Assistant Professor.</span>
+      </div>
+    </section>
+
+    <!-- ================= Publications ================= -->
+    <section id="publications">
+      <h2><a href="#publications">publications &amp; manuscripts</a></h2>
+
+      <div class="pub">
+        <div class="pub-year">2026</div>
+        <div class="pub-body">
+          <div class="pub-title">Cross-Dataset Diabetic Retinopathy Grading with a Lesion-Anchored Multi-View Transformer and Ordinal-Distance Knowledge Distillation</div>
+          <div class="pub-authors"><b>Kumar, P.</b> and Singh, S.K.</div>
+          <div class="pub-venue">ICT Express</div>
+        </div>
+      </div>
+
+      <div class="pub">
+        <div class="pub-year">2026</div>
+        <div class="pub-body">
+          <div class="pub-title">MSDAG-Net: A Multi-Scale Dual-Attention-Guided Network for Microaneurysm Segmentation in Fundus Images</div>
+          <div class="pub-authors"><b>Kumar, P.</b> and Singh, S.K.</div>
+          <div class="pub-venue">ICT Express</div>
+        </div>
+      </div>
+
+      <div class="pub">
+        <div class="pub-year">2026</div>
+        <div class="pub-body">
+          <div class="pub-title">Lesion-Graph Ordinal Reasoning with Calibrated Deferral for Cross-Dataset Diabetic Retinopathy Triage</div>
+          <div class="pub-authors"><b>Kumar, P.</b> and Singh, S.K.</div>
+          <div class="pub-venue">CVIP 2026</div>
+        </div>
+      </div>
+
+      <div class="pub">
+        <div class="pub-year">2026</div>
+        <div class="pub-body">
+          <div class="pub-title">LCK-CBM: Typed Lesion Keypoints for Interpretable Cross-Dataset Diabetic Retinopathy Grading</div>
+          <div class="pub-authors"><b>Kumar, P.</b> and Singh, S.K.</div>
+          <div class="pub-venue">CVIP 2026</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= Teaching ================= -->
+    <section id="teaching">
+      <h2><a href="#teaching">teaching</a></h2>
+
+      <div class="entry">
+        <div class="entry-when">2024 – Present</div>
+        <div class="entry-body">
+          <b>Sri Balaji University, Pune</b>
+          <div class="where">Assistant Professor</div>
+          <ul>
+            <li>Design and Analysis of Algorithms</li>
+            <li>Pattern Recognition and Deep Learning</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-when">2023 – 2024</div>
+        <div class="entry-body">
+          <b>Galgotias University, Greater Noida</b>
+          <div class="where">Assistant Professor</div>
+          <ul>
+            <li>Data Structures, Algorithms, and Python Programming</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-when">2019 – 2023</div>
+        <div class="entry-body">
+          <b>IIIT Allahabad</b>
+          <div class="where">Teaching Assistant &amp; Research Mentor, CVBL</div>
+          <ul>
+            <li>Deep Learning, Computer Graphics, Image and Video Processing, Data Compression, C Programming</li>
+            <li>Mentored interns and M.Tech students in computer vision and medical image analysis</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= Experience ================= -->
+    <section id="experience">
+      <h2><a href="#experience">experience &amp; education</a></h2>
+
+      <div class="entry">
+        <div class="entry-when">Nov 2024 – Present</div>
+        <div class="entry-body">
+          <b>Assistant Professor</b>, Sri Balaji University, Pune
+          <div class="where">University SPOC for Smart India Hackathon &middot; Head, Techno Tuner Club (2025–2026)</div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-when">Aug 2023 – Oct 2024</div>
+        <div class="entry-body">
+          <b>Assistant Professor</b>, Galgotias University, Greater Noida
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-when">Mar 2023 – Jun 2023</div>
+        <div class="entry-body">
+          <b>Data Scientist</b>, Ispeck Digital Solutions Pvt. Ltd., Kolkata
+          <div class="where">Face recognition and YOLO-based PPE-compliance monitoring for site security and surveillance</div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-when">Pursuing</div>
+        <div class="entry-body">
+          <b>Ph.D. in Information Technology</b> (Medical Image Analysis), IIIT Allahabad
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-when">2016 – 2018</div>
+        <div class="entry-body">
+          <b>M.Tech in Human-Computer Interaction</b>, IIIT Allahabad
+          <div class="where">CGPA: 8.00</div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-when">2012 – 2015</div>
+        <div class="entry-body">
+          <b>MCA (B-Level)</b>, NIELIT, New Delhi
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= Skills ================= -->
+    <section id="skills">
+      <h2><a href="#skills">skills</a></h2>
+      <div class="skills">
+        <div class="skill-card"><h3>Programming</h3><p>Python, C++, C</p></div>
+        <div class="skill-card"><h3>AI / ML</h3><p>PyTorch, TensorFlow, scikit-learn, deep learning, generative AI</p></div>
+        <div class="skill-card"><h3>Computer Vision</h3><p>OpenCV, fundus image analysis, lesion segmentation, object detection, face recognition</p></div>
+        <div class="skill-card"><h3>Core CS &amp; Tools</h3><p>Data structures, algorithms, OOP, DBMS &middot; Git, NumPy, Pandas, LaTeX</p></div>
+      </div>
+    </section>
+
+    <!-- ================= Service ================= -->
+    <section id="service">
+      <h2><a href="#service">service &amp; achievements</a></h2>
+      <div class="entry">
+        <div class="entry-when">2019 – 2022</div>
+        <div class="entry-body"><b>Treasurer</b>, IEEE UP Section, IIIT Allahabad</div>
+      </div>
+      <div class="entry">
+        <div class="entry-when">2020 – 2022</div>
+        <div class="entry-body"><b>Presidential Council Member &amp; Ph.D. Representative</b>, Gymkhana, IIIT Allahabad</div>
+      </div>
+      <div class="entry">
+        <div class="entry-when">2021</div>
+        <div class="entry-body">Organizing team, <b>5th International Conference on Computer Vision and Image Processing (CVIP)</b>, IIIT Allahabad</div>
+      </div>
+      <div class="entry">
+        <div class="entry-when">2016</div>
+        <div class="entry-body"><b>GATE 2016</b> — All India Rank 4619 among 100,000+ candidates</div>
+      </div>
+      <div class="entry">
+        <div class="entry-when">2020 – Present</div>
+        <div class="entry-body">Digital education outreach through <b>CSwithPravin</b></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="social">
+      <a href="mailto:praveen.swd@gmail.com" title="Email" aria-label="Email">
+        <svg viewBox="0 0 512 512"><path d="M64 112c-8.8 0-16 7.2-16 16v22.1L220.5 291.7c20.7 17 50.4 17 71.1 0L464 150.1V128c0-8.8-7.2-16-16-16H64zM48 212.2V384c0 8.8 7.2 16 16 16H448c8.8 0 16-7.2 16-16V212.2L322 328.8c-38.4 31.5-93.7 31.5-132 0L48 212.2z"/></svg>
+      </a>
+      <a href="https://github.com/pravinswd" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub">
+        <svg viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8z"/></svg>
+      </a>
+      <a href="https://www.linkedin.com/in/pravin-kumar-42b1a252" target="_blank" rel="noopener" title="LinkedIn" aria-label="LinkedIn">
+        <svg viewBox="0 0 448 512"><path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"/></svg>
+      </a>
+      <a href="Pravin_kumar.pdf" title="CV" aria-label="CV">
+        <svg viewBox="0 0 384 512"><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM80 64h64c8.8 0 16 7.2 16 16s-7.2 16-16 16H80c-8.8 0-16-7.2-16-16s7.2-16 16-16zm0 64h64c8.8 0 16 7.2 16 16s-7.2 16-16 16H80c-8.8 0-16-7.2-16-16s7.2-16 16-16zm16 96H288c17.7 0 32 14.3 32 32v64c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V256c0-17.7 14.3-32 32-32zm0 32v64H288V256H96zM240 416h64c8.8 0 16 7.2 16 16s-7.2 16-16 16H240c-8.8 0-16-7.2-16-16s7.2-16 16-16z"/></svg>
+      </a>
+    </div>
+    &copy; 2026 Pravin Kumar. Hosted on GitHub Pages.
+  </footer>
+
+  <script>
+    (function () {
+      var btn = document.getElementById('theme-toggle');
+      var root = document.documentElement;
+      function apply(mode) {
+        root.setAttribute('data-theme', mode);
+        btn.innerHTML = mode === 'dark' ? '&#9789;' : '&#9788;';
+      }
+      var saved = localStorage.getItem('theme');
+      var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      apply(saved || (prefersDark ? 'dark' : 'light'));
+      btn.addEventListener('click', function () {
+        var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        localStorage.setItem('theme', next);
+        apply(next);
+      });
+    })();
+  </script>
 </body>
 </html>
